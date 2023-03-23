@@ -5,20 +5,17 @@
 *@param {int} upper – верхняя граница диапазона
 *@return {int} result – случайное число
 */
-
 function getRndInteger(a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 }
-
 /**
 *Проверка максимальной длины строки
 *@param {int} string – проверяемая строка
 *@param {int} maxLength– максимальная длина
 */
-
 function checkLength(string, maxLength) {
   return string.length <= maxLength;
 }
@@ -51,18 +48,48 @@ const DESCRIPTION = [
   'family',
   'my life',
 ];
-
-
-const getRandomArrayElement = (elements) => elements[getRndInteger(0, elements.length - 1)];
-
+/**
+*Функция выбора рандомного элемента массива
+*@param {Array} - исходный массив
+*@return {*} - случайный элемент массива
+*/
+function getRandomArrayElement(elements) {
+  return elements[getRndInteger(0, elements.length - 1)];
+}
+const getUniqueNumber = (() => {
+  let i = 1;
+  return () => i++;
+})();
+/**
+*Функция создания объекта комментария
+*@return {int} id - уникальный номер комментария
+*@return {string} avatar - ссылка на аватар комментирующего
+*@return {string} message - рандомный элемент массива-текст комментария
+*@return {string} name - имя комментирующего
+*/
+function createComments() {
+  return ({
+    id: getUniqueNumber(),
+    avatar: `img/avatar-${getRndInteger(1, 6)}.svg`,
+    message: getRandomArrayElement(MESSAGE),
+    name: getRandomArrayElement(NAMES),
+  });
+}
 /**
 *Функция создания объекта описания фото
-*@param {int} id – проверяемая строка
+*@return {int} id - уникальный номер описания фото
+*@return {string} url - ссылка на фото
+*@return {string} description - рандомный элемент массива-описание фото
+*@return {int} likes - колличество лайков
+*@return {Array} comments - комментарий
 */
-const createPhotoObjeck = () => ({
-  id: 'getRndInteger(1,25)',
-  url: 'photos/'+getRndInteger(1, 25)+'.jpg',
-  description: 'getRandomArrayElement(DESCRIPTION)',
-  likes: 'getRndInteger(15,200)',
-  comments: '',
-});
+function createPhotoObject () {
+  return ({
+    id: getUniqueNumber(),
+    url: `photos/${getRndInteger(1,25)}.jpg`,
+    description: 'getRandomArrayElement(DESCRIPTION)',
+    likes: getRndInteger(15, 200),
+    comments: Array.from({length:2}, createComments),
+  });
+}
+const createPhotoObjects = Array.from({length:25}, createPhotoObject);
