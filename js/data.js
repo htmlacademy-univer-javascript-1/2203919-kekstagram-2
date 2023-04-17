@@ -1,4 +1,5 @@
 import {getRandomArrayElement, getUniqueNumber, getRndInteger} from './util.js';
+const PHOTO_OBJECTS_COUNT = 25;
 const NAMES = [
   'Олег',
   'Сергей',
@@ -43,7 +44,6 @@ function createComments() {
     name: getRandomArrayElement(NAMES),
   });
 }
-const PHOTO_OBJECTS_COUNT = 25;
 /**
 *Функция создания объекта описания фото
 *@return {int} id - уникальный номер описания фото
