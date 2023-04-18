@@ -1,4 +1,4 @@
-import {createPhotoObjects} from './data';
+import {createPhotoObjects} from './data.js';
 const miniatureTemplate = document.querySelector('#picture').content;
 const miniatureList = document.querySelector('.picture');
 const miniatureObjects = createPhotoObjects ();
