@@ -27,8 +27,8 @@ function checkLength(string, maxLength) {
 function getRandomArrayElement(elements) {
   return elements[getRndInteger(0, elements.length - 1)];
 }
-const getUniqueNumber = (() => {
+function getUniqueNumber () {
   let i = 1;
   return () => i++;
-})();
+}
 export {getRandomArrayElement, getUniqueNumber, getRndInteger};

@@ -56,7 +56,7 @@ function createPhotoObject () {
   return ({
     id: getUniqueNumber(),
     url: `photos/${getRndInteger(1,25)}.jpg`,
-    description: 'getRandomArrayElement(DESCRIPTION)',
+    description: getRandomArrayElement(DESCRIPTION),
     likes: getRndInteger(15, 200),
     comments: Array.from({length:2}, createComments),
   });
