@@ -1,14 +1,21 @@
-import {createPhotoObjects} from './data';
 const miniatureTemplate = document.querySelector('#picture').content;
-const miniatureList = document.querySelector('.picture');
-const miniatureObjects = createPhotoObjects ();
+const miniatureList = document.querySelector('.pictures');
 const miniatureListFragment = document.createDocumentFragment();
-miniatureObjects.forEach(({url, description, likes, comments}) => {
-  const miniatureElement = miniatureTemplate.cloneNode(true);
-  miniatureElement.querySelector('.picture__img').src = url;
-  miniatureElement.querySelector('.picture__info').textContent = description;
-  miniatureElement.querySelector('.picture__comments').textContent = comments;
-  miniatureElement.querySelector('.picture__likes').textContent = likes;
-  miniatureListFragment.appendChild(miniatureElement);
-});
-miniatureList.appendChild(miniatureListFragment);
+function renderMiniature (miniature) {
+  miniature.forEach(({url, description, likes, comments}) => {
+    const miniatureElement = miniatureTemplate.cloneNode(true);
+    const miniatureLikes = miniatureElement.querySelector('.picture__likes');
+    const miniatureImg = miniatureElement.querySelector('.picture__img');
+    const miniatureInfo = miniatureElement.querySelector('.picture__info');
+    const miniatureComments = miniatureElement.querySelector('.picture__comments');
+
+    miniatureLikes.textContent=likes;
+    miniatureImg.src=url;
+    miniatureInfo.textContent=description;
+    miniatureComments.textContent=comments;
+
+    miniatureListFragment.append(miniatureElement);
+  });
+  miniatureList.append(miniatureListFragment);
+}
+export {renderMiniature};
